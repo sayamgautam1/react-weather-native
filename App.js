@@ -10,15 +10,26 @@ import {
 import { useState } from "react";
 import axios from "axios";
 export default function App() {
+  const [name, setName] = useState("sam");
 
-
+  const handleNameChange = () => {
+    setName("changedName");
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.boldText}>Hello</Text>
       </View>
       <View style={styles.body}>
-        <Text> Body content</Text>
+        <Text> {name}</Text>
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="update Name"
+          onPress={() => {
+            handleNameChange;
+          }}
+        />
       </View>
     </SafeAreaView>
   );
@@ -40,6 +51,11 @@ const styles = StyleSheet.create({
   },
 
   body: {
-    color: "lightGreen",
+    backgroundColor: "yellow",
+    padding: 20,
+    marginTop: 10,
+  },
+  buttonContainer: {
+    marginTop: 20,
   },
 });
