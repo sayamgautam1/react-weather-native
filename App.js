@@ -17,19 +17,14 @@ export default function App() {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.boldText}>Hello</Text>
-      </View>
+      <Text>enter your name</Text>
+      <TextInput
+        style={styles.inputArea}
+        placeholder="enterName"
+        onChangeText={(val) => setName(val)}
+      />
       <View style={styles.body}>
         <Text> {name}</Text>
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          title="update Name"
-          onPress={() => {
-            handleNameChange;
-          }}
-        />
       </View>
     </SafeAreaView>
   );
@@ -42,20 +37,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  header: {
-    backgroundColor: "skyblue",
-    padding: 20,
-  },
-  boldText: {
-    fontWeight: 500,
+  inputArea: {
+    padding: 10,
+    borderWidth: 1,
+    width: 200,
+    borderColor: "black",
   },
 
   body: {
     backgroundColor: "yellow",
     padding: 20,
     marginTop: 10,
-  },
-  buttonContainer: {
-    marginTop: 20,
   },
 });

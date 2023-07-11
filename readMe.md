@@ -6,4 +6,4 @@
 
 3. apps do not understand css, so we using stylesheet atm
 
-4. onClick is onPress, and no ()=> arrow function, 
+4. TextInput are self closing tags , behaviour similar to form Input
