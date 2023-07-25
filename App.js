@@ -11,29 +11,37 @@ import CurrentWeather from "./components/CurrentWeather";
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <CurrentWeather />
+    <SafeAreaView style={[styles.container, { flexDirection: "column" }]}>
+      <View style={styles.viewDiv}>
+        <Text style={styles.header}>Weather</Text>
+      </View>
+      <View style={styles.viewDiv1}>
+        <CurrentWeather />
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputArea: {
-    padding: 10,
-    borderWidth: 1,
-    width: 200,
-    borderColor: "black",
-  },
-
-  body: {
-    backgroundColor: "yellow",
+    flex: 1,
+    backgroundColor: "black",
+    color: "white",
     padding: 20,
-    marginTop: 10,
+    // alignItems: "center",
+  },
+  header: {
+    // padding: 10,
+    color: "white",
+    fontSize: 25,
+    textAlign: "left",
+    fontWeight: "bold",
+  },
+  viewDiv: {
+    padding: 20,
+  },
+  viewDiv1: {
+    padding: 20,
+    flex: 2,
   },
 });

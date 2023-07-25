@@ -25,9 +25,9 @@ async function useCity(inputCity) {
 const CurrentWeather = () => {
   const [inputCity, setinputCity] = useState("");
   const [cityData, setCityData] = useState();
-  const [currentPlace, setCurrentPlace] = useState("");
+  const [currentPlace, setCurrentPlace] = useState(null);
   // function to clear input text
-  const clearInput = async () => {
+  const handleLocationSearch = async () => {
     const data = await useCity(inputCity);
     setCityData(data);
     setinputCity("");
@@ -42,10 +42,11 @@ const CurrentWeather = () => {
   }, [cityData]);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <TextInput
         style={styles.inputArea}
         placeholder="enter city name!!"
+        placeholderTextColor={"white"}
         onChangeText={(newCity) => setinputCity(newCity)}
         clearButtonMode="always"
         value={inputCity}
@@ -53,38 +54,49 @@ const CurrentWeather = () => {
       <Button
         title="Search"
         onPress={() => {
-          alert(inputCity);
-          clearInput();
+          handleLocationSearch();
         }}
       />
-      <View>
-        <Text>current weather</Text>
-        <Text>city : {currentPlace.name}</Text>
-        <Text>current temperature : {currentPlace.main.temp}</Text>
-        <Text>max temperature:{currentPlace.main.temp_max}</Text>
-        <Text>current weather:{currentPlace.main.temp_min}</Text>
-      </View>
+      {currentPlace != null && (
+        <View style={styles.displayDetails}>
+          <Text style={styles.textStyles}>current weather</Text>
+          <Text style={styles.textStyles}>city : {currentPlace.name}</Text>
+          <Text style={styles.textStyles}>
+            current temperature : {currentPlace.main.temp}
+          </Text>
+          <Text style={styles.textStyles}>
+            max temperature:{currentPlace.main.temp_max}
+          </Text>
+          <Text style={styles.textStyles}>
+            current weather:{currentPlace.main.temp_min}
+          </Text>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "red",
+    // backgroundColor: "red",
     alignItems: "center",
     justifyContent: "center",
+    padding: 20,
+    color: "white",
   },
   inputArea: {
-    padding: 10,
+    borderColor: "gray",
+    width: "100%",
     borderWidth: 1,
-    width: 200,
-    borderColor: "black",
+    borderRadius: 10,
+    padding: 10,
+    color: "white",
   },
+  textStyles: {
+    borderWidth: 1,
+    fontSize: 20,
 
-  body: {
-    backgroundColor: "yellow",
-    padding: 20,
-    marginTop: 10,
+    color: "white",
   },
 });
 export default CurrentWeather;
