@@ -7,25 +7,15 @@ import {
   View,
   Image,
 } from "react-native";
-import { useState } from "react";
-import axios from "axios";
-export default function App() {
-  const [name, setName] = useState("sam");
+import CurrentWeather from "./components/CurrentWeather";
 
-  const handleNameChange = () => {
-    setName("changedName");
-  };
+export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>enter your name</Text>
-      <TextInput
-        style={styles.inputArea}
-        placeholder="enterName"
-        onChangeText={(val) => setName(val)}
-      />
-      <View style={styles.body}>
-        <Text> {name}</Text>
+      <View>
+        <TextInput></TextInput>
       </View>
+      <CurrentWeather />
     </SafeAreaView>
   );
 }
