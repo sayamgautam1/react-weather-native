@@ -1,10 +1,35 @@
-import React from "react";
-import { Text, StyleSheet, TextInput, SafeAreaView } from "react-native";
-import { useCity } from "../hooks/useCity";
+import React, { useState } from "react";
+import {
+  Text,
+  StyleSheet,
+  TextInput,
+  SafeAreaView,
+  Button,
+} from "react-native";
+
 const CurrentWeather = () => {
+  const [inputCity, setinputCity] = useState("");
+
+  // function to clear input text
+  const clearInput = () => {
+    setinputCity("");
+  };
   return (
     <SafeAreaView>
-      <TextInput style={styles.inputArea}></TextInput>
+      <TextInput
+        style={styles.inputArea}
+        placeholder="enter city name!!"
+        onChangeText={(newCity) => setinputCity(newCity)}
+        clearButtonMode="always"
+        value={inputCity}
+      ></TextInput>
+      <Button
+        title="Search"
+        onPress={() => {
+          alert(inputCity);
+          clearInput();
+        }}
+      />
     </SafeAreaView>
   );
 };
