@@ -12,9 +12,6 @@ import CurrentWeather from "./components/CurrentWeather";
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        <TextInput></TextInput>
-      </View>
       <CurrentWeather />
     </SafeAreaView>
   );
@@ -22,7 +19,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",

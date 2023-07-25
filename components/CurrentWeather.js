@@ -6,12 +6,31 @@ import {
   SafeAreaView,
   Button,
 } from "react-native";
+import { apiKey } from "@env";
+
+function useCity(inputCity) {
+  const requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity}&units=metric&appid=${apiKey}`;
+
+  return fetch(requestUrl)
+    .then(function (response) {
+      if (!response.ok) {
+        alert("sorry, the city you have search cannot be found");
+        throw response.json();
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      return data;
+    });
+}
 
 const CurrentWeather = () => {
   const [inputCity, setinputCity] = useState("");
 
   // function to clear input text
   const clearInput = () => {
+    useCity(inputCity);
     setinputCity("");
   };
   return (
