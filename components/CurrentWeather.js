@@ -1,38 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   StyleSheet,
   TextInput,
   SafeAreaView,
   Button,
+  View,
 } from "react-native";
 import { apiKey } from "@env";
 
-function useCity(inputCity) {
+async function useCity(inputCity) {
   const requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity}&units=metric&appid=${apiKey}`;
 
-  return fetch(requestUrl)
-    .then(function (response) {
-      if (!response.ok) {
-        alert("sorry, the city you have search cannot be found");
-        throw response.json();
-      }
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-      return data;
-    });
+  const response = await fetch(requestUrl);
+  if (!response.ok) {
+    alert("sorry, the city you have search cannot be found");
+    throw response.json();
+  }
+  const data = await response.json();
+  console.log("return value", data.name);
+  return data;
 }
 
 const CurrentWeather = () => {
   const [inputCity, setinputCity] = useState("");
-
+  const [cityData, setCityData] = useState();
+  const [currentPlace, setCurrentPlace] = useState("");
   // function to clear input text
-  const clearInput = () => {
-    useCity(inputCity);
+  const clearInput = async () => {
+    const data = await useCity(inputCity);
+    setCityData(data);
     setinputCity("");
   };
+  useEffect(() => {
+    if (cityData) {
+      setCurrentPlace(cityData);
+      console.log(cityData);
+    }
+
+    return;
+  }, [cityData]);
+
   return (
     <SafeAreaView>
       <TextInput
@@ -49,6 +57,13 @@ const CurrentWeather = () => {
           clearInput();
         }}
       />
+      <View>
+        <Text>current weather</Text>
+        <Text>city : {currentPlace.name}</Text>
+        <Text>current temperature : {currentPlace.main.temp}</Text>
+        <Text>max temperature:{currentPlace.main.temp_max}</Text>
+        <Text>current weather:{currentPlace.main.temp_min}</Text>
+      </View>
     </SafeAreaView>
   );
 };
