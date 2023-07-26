@@ -59,8 +59,7 @@ const CurrentWeather = () => {
       />
       {currentPlace != null && (
         <View style={styles.displayDetails}>
-          <Text style={styles.textStyles}>current weather</Text>
-          <Text style={styles.textStyles}>city : {currentPlace.name}</Text>
+          <Text style={styles.textStyles}>{currentPlace.name}</Text>
           <Text style={styles.textStyles}>
             current temperature : {currentPlace.main.temp}
           </Text>
@@ -97,6 +96,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
 
     color: "white",
+  },
+  displayDetails: {
+    borderWidth: 1,
+    width: "100%",
+    padding: 10,
+    borderColor: "white",
+    borderRadius: 25,
+    // display: "flex",
+    // flexDirection: "row",
+    // flexWrap: "wrap",
   },
 });
 export default CurrentWeather;
