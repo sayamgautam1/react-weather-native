@@ -7,3 +7,10 @@
 3. apps do not understand css, so we using stylesheet atm
 
 4. TextInput are self closing tags , behaviour similar to form Input
+
+# TO DO
+
+1. impment react query in making fetch request
+2. implemnt react navigation to get more detailes of a recieveved weather
+
+3. create more details component
